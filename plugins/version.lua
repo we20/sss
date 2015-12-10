@@ -2,7 +2,7 @@ do
 
 function run(msg, matches)
   return 'Merbot '.. VERSION .. [[ 
-  Checkout http://git.io/v4Oi0
+  Checkout bilakh.com :D
   GNU GPL v2 license.]]
 end
 
