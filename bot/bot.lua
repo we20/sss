@@ -212,6 +212,7 @@ function create_config( )
       "help",
       "id",
       "invite",
+      "moderation",
       "plugins",
       "version"},
     sudo_users = {128556958,mehran_hpr},
