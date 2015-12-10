@@ -114,7 +114,6 @@ local function bot_stats()
   local redis_scan = [[
     local cursor = '0'
     local count = 0
-
     repeat
       local r = redis.call("SCAN", cursor, "MATCH", KEYS[1])
       cursor = r[1]
