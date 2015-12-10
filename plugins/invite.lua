@@ -1,12 +1,9 @@
 --[[
 Invite other user to the chat group.
-
 Use !invite ********* (where ********* is id_number) to invite a user by id_number.
 This is the most reliable method.
-
 Use !invite @username to invite a user by @username.
 Less reliable. Some users don't have @username.
-
 Use !invite Type print_name Here to invite a user by print_name.
 Unreliable. Avoid if possible.
 ]]--
@@ -76,7 +73,7 @@ return {
     "^!invite (%d+)$"
   },
   run = run,
-  privileged = true
+  moderated = true
 }
 
 end
