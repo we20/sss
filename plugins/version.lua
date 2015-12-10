@@ -1,7 +1,7 @@
 do
 
 function run(msg, matches)
-  return 'Merbot '.. VERSION .. [[ 
+  return 'bilakh '.. VERSION .. [[ 
   Checkout bilakh.com :D
   GNU GPL v2 license.]]
 end
