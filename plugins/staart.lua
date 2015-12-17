@@ -1,7 +1,7 @@
 do
 
 function run(msg, matches)
-  return "علی دوست دارم عاشقتم ولی اگه بهم کون ندی دوست ندارم"
+  return "علی تو عشق منی گلم"
 end
 
 return {
@@ -9,7 +9,6 @@ return {
   usage = "!join [invite link]",
   patterns = {
     "^علی جون$",
-    "^/علی جون$",
   },
   run = run
 }
