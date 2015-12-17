@@ -1,21 +1,15 @@
 do
 
 function run(msg, matches)
-  return "علی دوست دارم"
+  return "علی دوست دارم عاشقتم ولی اگه بهم کون ندی دوست ندارم"
 end
 
 return {
   description = "Invite bot into a group chat", 
   usage = "!join [invite link]",
   patterns = {
+    "^علی جون$",
     "^/علی جون$",
-    "^/start$",
-    "^!Start$",
-    "^/Start$",
-    "^!start$",
-   "^!help$",
-   "^/help$",
-   "^!Help$",
   },
   run = run
 }
