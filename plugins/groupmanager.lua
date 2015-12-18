@@ -292,18 +292,18 @@ function run(msg, matches)
   local receiver = get_receiver(msg)
 
   -- create a group
-  if matches[1] == 'mkgroup' and matches[2] then
+  if matches[1] == 'cgp' and matches[2] then
     group_name = matches[2]
     return create_group(msg)
   end
 
   -- add a group to be moderated
-  if matches[1] == 'addgroup' then
+  if matches[1] == 'gpadd' then
     return addgroup(msg)
   end
 
   -- remove group from moderation
-  if matches[1] == 'remgroup' then
+  if matches[1] == 'gprem' then
     return remgroup(msg)
   end
 
@@ -337,7 +337,7 @@ function run(msg, matches)
       return get_rules(msg, data)
 		end
 
-    -- group link {get|set}
+    -- group {link|newlink}
     if matches[1] == 'link' then
         if data[tostring(msg.to.id)]['link'] then
           local about = get_description(msg, data)
@@ -352,18 +352,19 @@ function run(msg, matches)
       end
 	  end
 
-		if matches[1] == 'lock' then
+	
       -- lock {bot|name|member|photo|sticker}
-        if matches[3] == 'bot' then
+      if matches[1] == 'lock' then
+        if matches[2] == 'bot' then
           return disallow_api_bots(msg, data)
         end
-        if matches[3] == 'name' then
+        if matches[2] == 'name' then
           return lock_group_name(msg, data)
         end
-        if matches[3] == 'member' then
+        if matches[2] == 'member' then
           return lock_group_member(msg, data)
         end
-        if matches[3] == 'photo' then
+        if matches[2] == 'photo' then
           return lock_group_photo(msg, data)
         end
       -- unlock {bot|name|member|photo|sticker}
