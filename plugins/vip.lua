@@ -13,7 +13,6 @@ return {
 
   },
   run = run
-  privileged = true
 }
 
 end
