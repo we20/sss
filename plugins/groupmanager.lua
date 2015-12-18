@@ -292,18 +292,18 @@ function run(msg, matches)
   local receiver = get_receiver(msg)
 
   -- create a group
-  if matches[1] == 'cgp' and matches[2] then
+  if matches[1] == 'mkgroup' and matches[2] then
     group_name = matches[2]
     return create_group(msg)
   end
 
   -- add a group to be moderated
-  if matches[1] == 'gpadd' then
+  if matches[1] == 'addgroup' then
     return addgroup(msg)
   end
 
   -- remove group from moderation
-  if matches[1] == 'gprem' then
+  if matches[1] == 'remgroup' then
     return remgroup(msg)
   end
 
@@ -337,8 +337,9 @@ function run(msg, matches)
       return get_rules(msg, data)
 		end
 
-    -- group {link|newlink}
+    -- group link {get|set}
     if matches[1] == 'link' then
+      if matches[2] == 'get' then
         if data[tostring(msg.to.id)]['link'] then
           local about = get_description(msg, data)
           local link = data[tostring(msg.to.id)]['link']
@@ -347,28 +348,28 @@ function run(msg, matches)
           return 'Invite link does not exist.\nTry !link set to generate it.'
         end
       end
-      if matches[2] == 'newlink' and is_mod(msg) then
+      if matches[2] == 'set' and is_mod(msg) then
         msgr = export_chat_link(receiver, export_chat_link_callback, {data=data, msg=msg})
       end
 	  end
 
-	
+		
       -- lock {bot|name|member|photo|sticker}
-                  if matches[1] == 'lock' then
-        if matches[2] == 'bot' then
+      if matches[1] == 'lock' then
+        if matches[3] == 'bot' then
           return disallow_api_bots(msg, data)
         end
-        if matches[2] == 'name' then
+        if matches[3] == 'name' then
           return lock_group_name(msg, data)
         end
-        if matches[2] == 'member' then
+        if matches[3] == 'member' then
           return lock_group_member(msg, data)
         end
-        if matches[2] == 'photo' then
+        if matches[3] == 'photo' then
           return lock_group_photo(msg, data)
         end
       -- unlock {bot|name|member|photo|sticker}
-		  if matches[2] == 'unlock' then
+		  elseif matches[2] == 'unlock' then
         if matches[3] == 'bot' then
           return allow_api_bots(msg, data)
         end
@@ -551,11 +552,10 @@ return {
     "^!(addgroup)$",
     "%[(audio)%]",
     "%[(document)%]",
-    "^!(lock) (.*)$",
+    "^!(group) (lock) (.*)$",
     "^!(group) (settings)$",
-    "^!(unlock) (.*)$",
-    "^!(newlink)$",
-    "^!(link)$",
+    "^!(group) (unlock) (.*)$",
+    "^!(link) (.*)$",
     "^!(mkgroup) (.*)$",
     "%[(photo)%]",
     "^!(remgroup)$",
