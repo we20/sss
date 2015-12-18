@@ -354,7 +354,7 @@ function run(msg, matches)
 
 	
       -- lock {bot|name|member|photo|sticker}
-      if matches[1] == 'lock' then
+                  if matches[1] == 'lock' then
         if matches[2] == 'bot' then
           return disallow_api_bots(msg, data)
         end
@@ -368,7 +368,7 @@ function run(msg, matches)
           return lock_group_photo(msg, data)
         end
       -- unlock {bot|name|member|photo|sticker}
-		  elseif matches[2] == 'unlock' then
+		  if matches[2] == 'unlock' then
         if matches[3] == 'bot' then
           return allow_api_bots(msg, data)
         end
