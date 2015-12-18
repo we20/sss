@@ -353,41 +353,35 @@ function run(msg, matches)
       end
 	  end
 
-
-          if matches[1] == 'lock' then
-      local target = msg.to.id
-      if matches[2] == 'name' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked name ")
-        return lock_group_namemod(msg, data, target)
-      end
-      if matches[2] == 'member' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked member ")
-        return lock_group_membermod(msg, data, target)
+		if matches[1] == 'group' then
+      -- lock {bot|name|member|photo|sticker}
+      if matches[2] == 'lock' then
+        if matches[3] == 'bot' then
+          return disallow_api_bots(msg, data)
         end
-      if matches[2] == 'bot' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked bots ")
-        return lock_group_bots(msg, data, target)
-      end
-    end
-    if matches[1] == 'unlock' then 
-      local target = msg.to.id
-      if matches[2] == 'name' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked name ")
-        return unlock_group_namemod(msg, data, target)
-      end
-      if matches[2] == 'member' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked member ")
-        return unlock_group_membermod(msg, data, target)
-      end
-      if matches[2] == 'photo' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked photo ")
-        return unlock_group_photomod(msg, data, target)
-      end
-      if matches[2] == 'bot' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked bots ")
-        return unlock_group_bots(msg, data, target)
-      end
-    end
+        if matches[3] == 'name' then
+          return lock_group_name(msg, data)
+        end
+        if matches[3] == 'member' then
+          return lock_group_member(msg, data)
+        end
+        if matches[3] == 'photo' then
+          return lock_group_photo(msg, data)
+        end
+      -- unlock {bot|name|member|photo|sticker}
+		  elseif matches[2] == 'unlock' then
+        if matches[3] == 'bot' then
+          return allow_api_bots(msg, data)
+        end
+        if matches[3] == 'name' then
+          return unlock_group_name(msg, data)
+        end
+        if matches[3] == 'member' then
+          return unlock_group_member(msg, data)
+        end
+        if matches[3] == 'photo' then
+          return unlock_group_photo(msg, data)
+        end
       -- view group settings
       elseif matches[2] == 'settings' then
         return show_group_settings(msg, data)
