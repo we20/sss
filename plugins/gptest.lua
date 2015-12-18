@@ -347,7 +347,6 @@ function run(msg, matches)
           return 'Invite link does not exist.\nTry !link set to generate it.'
         end
     end
-    
   if matches[1] == 'newlink' and is_mod(msg) then
         msgr = export_chat_link(receiver, export_chat_link_callback, {data=data, msg=msg})
       end
