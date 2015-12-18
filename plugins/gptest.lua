@@ -338,8 +338,8 @@ function run(msg, matches)
 		end
 
     -- group link {get|set}
-    if matches[1] == 'link' then
-      if matches[2] == 'get' then
+    if matches[1] == 'get' then
+      if matches[2] == 'link' then
         if data[tostring(msg.to.id)]['link'] then
           local about = get_description(msg, data)
           local link = data[tostring(msg.to.id)]['link']
@@ -355,19 +355,20 @@ function run(msg, matches)
 
 		if matches[1] == 'group' then
       -- lock {bot|name|member|photo|sticker}
-      if matches[2] == 'lock' then
-        if matches[3] == 'bot' then
-          return disallow_api_bots(msg, data)
-        end
-        if matches[3] == 'name' then
-          return lock_group_name(msg, data)
-        end
-        if matches[3] == 'member' then
-          return lock_group_member(msg, data)
-        end
-        if matches[3] == 'photo' then
-          return lock_group_photo(msg, data)
-        end
+      if matches[1] == 'lock'  then
+      if matches[2] == 'bot' then
+        return disallow_api_bots(msg, data)
+      end
+      if matches[2] == 'name' then
+        return lock_group_name(msg, data)
+      end
+      if matches[2] == 'member' then
+        return lock_group_member(msg, data)
+      end
+      if matches[2] == 'photo' then
+        return lock_group_photo(msg, data)
+      end
+    end
       -- unlock {bot|name|member|photo|sticker}
 		  elseif matches[2] == 'unlock' then
         if matches[3] == 'bot' then
