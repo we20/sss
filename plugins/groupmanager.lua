@@ -338,7 +338,8 @@ function run(msg, matches)
 		end
 
     -- group link {get|set}
-    if matches[1] == 'getlink' then
+    if matches[1] == 'link' then
+    	if matches[2] == 'get' then
         if data[tostring(msg.to.id)]['link'] then
           local about = get_description(msg, data)
           local link = data[tostring(msg.to.id)]['link']
@@ -347,7 +348,7 @@ function run(msg, matches)
           return 'Invite link does not exist.\nTry !link set to generate it.'
         end
       end
-      if matches[2] == 'relink' and is_mod(msg) then
+      if matches[2] == 'set' and is_mod(msg) then
         msgr = export_chat_link(receiver, export_chat_link_callback, {data=data, msg=msg})
       end
 	  end
@@ -554,8 +555,7 @@ return {
     "^!() (lock) (.*)$",
     "^!() (settings)$",
     "^!() (unlock) (.*)$",
-    "^!(getlink)$",
-    "^!(relink)$",
+    "^!(link) (.*)$",
     "^!(mkgroup) (.*)$",
     "%[(photo)%]",
     "^!(remgroup)$",
