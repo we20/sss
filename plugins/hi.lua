@@ -16,12 +16,12 @@ end
 return {
 	description = "Chat With Robot Server", 
 	usage = "chat with robot",
-	patterns = {
-		"^سلام$",
-		"^خوبی$",
-		"^مرسی$",
-		"^سلامتی تو چخبر$",
-		}, 
+patterns = {
+      	"^سلام$",
+	"^خوبی$",
+	"^مرسی$",
+	"^سلامتی تو چخبر$",
+	}, 
 	run = run,
 	pre_process = pre_process
 }
