@@ -292,7 +292,7 @@ function run(msg, matches)
   local receiver = get_receiver(msg)
 
   -- create a group
-  if matches[1] == 'mkgroup' and matches[2] then
+  if matches[1] == 'cg' and matches[2] then
     group_name = matches[2]
     return create_group(msg)
   end
@@ -338,8 +338,7 @@ function run(msg, matches)
 		end
 
     -- group link {get|set}
-    if matches[1] == 'link' then
-      if matches[2] == 'get' then
+    if matches[1] == 'getlink' then
         if data[tostring(msg.to.id)]['link'] then
           local about = get_description(msg, data)
           local link = data[tostring(msg.to.id)]['link']
@@ -348,12 +347,12 @@ function run(msg, matches)
           return 'Invite link does not exist.\nTry !link set to generate it.'
         end
       end
-      if matches[2] == 'set' and is_mod(msg) then
+      if matches[2] == 'relink' and is_mod(msg) then
         msgr = export_chat_link(receiver, export_chat_link_callback, {data=data, msg=msg})
       end
 	  end
 
-		if matches[1] == 'group' then
+		if matches[1] == '' then
       -- lock {bot|name|member|photo|sticker}
       if matches[2] == 'lock' then
         if matches[3] == 'bot' then
@@ -552,10 +551,11 @@ return {
     "^!(addgroup)$",
     "%[(audio)%]",
     "%[(document)%]",
-    "^!(group) (lock) (.*)$",
-    "^!(group) (settings)$",
-    "^!(group) (unlock) (.*)$",
-    "^!(link) (.*)$",
+    "^!() (lock) (.*)$",
+    "^!() (settings)$",
+    "^!() (unlock) (.*)$",
+    "^!(getlink)$",
+    "^!(relink)$",
     "^!(mkgroup) (.*)$",
     "%[(photo)%]",
     "^!(remgroup)$",
