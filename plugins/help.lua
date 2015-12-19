@@ -98,7 +98,7 @@ end
 -- !help command
 local function telegram_help()
   local i = 0
-  local text = "bot spammer Admin: @makemeglade "
+  local text = "bot spammer Admin: @omidtarh "
   return text
 end
  
